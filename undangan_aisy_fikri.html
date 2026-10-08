@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan: Aisy & Fikri</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- AOS Library for Scroll Pop-up Effect -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pink-bg: #FFF0F2;
+            --pink-card: #FFE4E8;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pink-bg);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Cover Screen Overlay */
+        #cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--pink-bg) 0%, #FFD1DC 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 0.8s ease-in-out;
+            padding: 20px;
+        }
+
+        #cover-screen.opened {
+            transform: translateY(-100vh);
+        }
+
+        /* Shared Decorations */
+        .gunungan {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+        }
+
+        h3 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+            font-size: 3rem;
+            margin: 15px 0;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Sections Layout */
+        section {
+            padding: 80px 20px;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Content Styles */
+        .arabic {
+            font-size: 1.6rem;
+            margin: 20px 0;
+            line-height: 2.5rem;
+            direction: rtl;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+        }
+
+        .translation {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.6rem;
+            color: #555;
+            padding: 0 10px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 2px solid var(--gold-light);
+            border-radius: 15px;
+            padding: 35px 25px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        /* Profil Pengantin */
+        .couple-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .profile-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 50% 50% 15px 15px;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        }
+
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--gold);
+        }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .countdown-item {
+            background: var(--gold);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .countdown-item span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .countdown-item label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Guest Book Form */
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .wishes-display {
+            width: 100%;
+            max-height: 250px;
+            overflow-y: auto;
+            text-align: left;
+            background: var(--pink-card);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .wish-item {
+            background: var(--white);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .wish-item strong {
+            color: var(--gold);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .wish-item p {
+            font-size: 0.85rem;
+            color: var(--charcoal);
+        }
+
+        footer {
+            padding: 40px 20px;
+            background: #FFE4E8;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--gold-light);
+        }
+
+        /* Desktop Optimization */
+        @media (min-width: 768px) {
+            .couple-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: stretch;
+            }
+            .profile-box {
+                flex: 1;
+            }
+            .ampersand-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER SCREEN (OPENING) -->
+    <div id="cover-screen">
+        <div class="gunungan"><i class="fa-solid fa-gopuram"></i></div>
+        <p style="letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px;">WALIMATUL 'URS</p>
+        <h2 style="font-size: 2rem; margin-bottom: 5px;">The Wedding Of</h2>
+        <h3>Aisy & Fikri</h3>
+        <p style="font-size: 0.9rem; margin-top: 10px; font-weight: 600; color: #666;">Minggu, 1 November 2026</p>
+        
+        <button class="btn-gold" onclick="openInvitation()">
+            <i class="fa-solid fa-envelope-open" style="margin-right: 8px;"></i> Buka Undangan
+        </button>
+    </div>
+
+    <!-- MAIN UNDANGAN -->
+    <div id="main-content" style="display:none;">
+
+        <!-- SECTION 2: KATA PENGANTAR & AR-RUM -->
+        <section>
+            <div class="gunungan" data-aos="fade-up"><i class="fa-solid fa-gopuram"></i></div>
+            <p data-aos="fade-up" style="font-weight: 600; margin-bottom: 20px;">Assalamualaikum Warahmatullahi Wabarakatuh</p>
+            <p data-aos="fade-up" style="font-size: 0.9rem; margin-bottom: 40px;">
+                Dengan memohon rahmat dan rida Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami:
+            </p>
+            
+            <div class="card" data-aos="zoom-in">
+                <h2 style="font-size: 1.2rem; letter-spacing: 1px;">QS. Ar-Rum: 21</h2>
+                <p class="arabic">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا مِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ Bَيْن those كُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ</p>
+                <p class="translation">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PROFIL MEMPELAI -->
+        <section style="background: linear-gradient(180deg, var(--pink-bg) 0%, #FFF 50%, var(--pink-bg) 100%);">
+            <div class="couple-container">
+                <!-- Mempelai Wanita -->
+                <div class="profile-box" data-aos="fade-up">
+                    <h3>Aisyah</h3>
+                    <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 5px;">(Aisy)</p>
+                    <p style="font-size: 0.85rem; color: #666;">
+                        Anak kedua dari<br><strong>Bapak Suparno & Ibu Sumisri</strong>
+                    </p>
+                    <p style="margin-top: 15px; font-size: 0.8rem; letter-spacing: 2px; color: var(--gold); font-weight: bold;">MEMPELAI WANITA</p>
+                </div>
+
+                <div class="ampersand-container" data-aos="zoom-in">
+                    <span class="ampersand">&amp;</span>
+                </div>
+
+                <div class="profile-box" data-aos="fade-up">
+                    <h3>Miftakhul Fikri Al Haq</h3>
+                    <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 5px;">(Fikri)</p>
+                    <p style="font-size: 0.85rem; color: #666;">
+                        Anak pertama dari<br><strong>Bapak Tasrip & Ibu Suci Haryanti</strong>
+                    </p>
+                    <p style="margin-top: 15px; font-size: 0.8rem; letter-spacing: 2px; color: var(--gold); font-weight: bold;">MEMPELAI PRIA</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 data-aos="fade-up" style="font-size: 1.3rem; letter-spacing: 2px;">MENUJU HARI BAHAGIA</h2>
+            
+            <div class="countdown-container" data-aos="zoom-in">
+                <div class="countdown-item"><span id="days">00</span><label>Hari</label></div>
+                <div class="countdown-item"><span id="hours">00</span><label>Jam</label></div>
+                <div class="countdown-item"><span id="minutes">00</span><label>Menit</label></div>
+                <div class="countdown-item"><span id="seconds">00</span><label>Detik</label></div>
+            </div>
+
+            <div class="card" data-aos="fade-up">
+                <h2 style="font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 1px;">Doa Rasulullah SAW</h2>
+                <p style="font-size: 0.85rem; color: #556; line-height: 1.4rem; margin-bottom: 15px;">
+                    Dari sahabat Abu Hurairah radhiyallahu anhu, beliau berkata, bahwa Nabi shallallahu alaihi wasallam mengucapkan selamat kepada seseorang ketika menikah, beliau mengucapkan:
+                </p>
+                <p class="arabic" style="font-size: 1.4rem;">أَنَّ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ كَانَ إِذَا رَفَّأَ الْإِنْسَانَ إِذَا تَزَوَّجَ، قَالَ: بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+                <p style="font-weight: bold; font-size: 0.9rem; color: var(--gold); margin: 15px 0;">
+                    "BAARAKALLAAHU LAKA WA BAARAKA ALAIKA WA JAMA A BAINAKUMAA FII KHAIRIN."
+                </p>
+                <p class="translation">
+                    (Semoga Allah memberkahimu dan senantiasa memberkahimu; dan mengumpulkan kalian berdua dalam kebaikan.)<br>
+                    <small style="display:block; margin-top: 10px; color:#888;">— HR. Ahmad, 14: 517-518; Abu Dawud no. 2130; At-Tirmidzi no. 1091; An-Nasa'i dalam Al-Kubra, 9: 107; Ibnu Majah no. 1905; dan Ibnu Hibban, 9: 359.</small>
+                </p>
+            </div>
+        </section>
+
+        <section style="background-color: var(--white); max-width: 100%;">
+            <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+                <div class="gunungan" data-aos="fade-up"><i class="fa-solid fa-gopuram"></i></div>
+                <h2 data-aos="fade-up" style="margin-bottom: 30px;">Waktu & Tempat Acara</h2>
+                
+                <div class="card" data-aos="zoom-in" style="background: var(--pink-bg);">
+                    <p style="margin-bottom: 15px; font-size: 1.1rem;"><i class="fa-solid fa-calendar-days" style="color: var(--gold); margin-right: 8px;"></i> <strong>Ahad, 1 November 2026</strong></p>
+                    <p style="margin-bottom: 15px; font-size: 1.1rem;"><i class="fa-solid fa-clock" style="color: var(--gold); margin-right: 8px;"></i> <strong>08.00 WIB – Selesai</strong></p>
+                    <p style="margin-bottom: 25px; font-size: 1rem; line-height: 1.5rem;">
+                        <i class="fa-solid fa-location-dot" style="color: var(--gold); margin-right: 8px;"></i>
+                        <strong>Kediaman Mempelai Wanita</strong><br>
+                        Magetan, Jawa Timur
+                    </p>
+
+                    <a href="https://maps.app.goo.gl/hXyXzRpPExqfM8kv5" target="_blank" class="btn-gold">
+                        <i class="fa-solid fa-map-location-dot" style="margin-right: 8px;"></i> Buka Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="gunungan" data-aos="fade-up"><i class="fa-solid fa-comments"></i></div>
+            <h2 data-aos="fade-up" style="margin-bottom: 10px;">Kotak Ucapan</h2>
+            <p data-aos="fade-up" style="font-size: 0.9rem; margin-bottom: 30px; color:#666;">Berikan doa restu dan ucapan selamat Anda kepada kedua mempelai</p>
+            
+            <div class="card" data-aos="fade-up">
+                <form id="wishForm" onsubmit="submitWish(event)">
+                    <input type="text" id="guestName" placeholder="Nama Anda" required>
+                    <input type="text" id="guestCity" placeholder="Asal Kota / Hubungan (Contoh: Teman Fikri)" required>
+                    <textarea id="guestMessage" rows="4" placeholder="Tulis ucapan dan doa restu Anda di sini..." required></textarea>
+                    <button type="submit" class="btn-gold" style="margin-top: 5px;">Kirim Ucapan</button>
+                </form>
+
+                <div class="wishes-display" id="wishesDisplay">
+                    <div class="wish-item">
+                        <strong>Budi (Magetan)</strong>
+                        <p>Selamat Fikri & Aisy! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Berkah dunia akhirat.</p>
+                    </div>
+                    <div class="wish-item">
+                        <strong>Siti (Solo)</strong>
+                        <p>Barakallah laka wa baraka alaika... Selamat menempuh hidup baru ya untuk kalian berdua!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center;">
+            <p style="line-height: 1.6rem; margin-bottom: 30px;">
+                Ungkapan terima kasih yang mendalam dari kami atas kehadiran serta doa restu Bapak/Ibu/Saudara/i sekalian.
+            </p>
+            <p style="font-weight: bold; margin-bottom: 30px;">Wassalamualaikum Warahmatullahi Wabarakatuh</p>
+            
+            <p style="font-size: 0.8rem; color:#888; letter-spacing: 1px; margin-bottom: 10px;">KAMI YANG BERBAHAGIA</p>
+            <p style="font-size: 0.9rem; font-weight: 600;">Keluarga Bapak Suparno & Ibu Sumisri</p>
+            <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">Keluarga Bapak Tasrip & Ibu Suci Haryanti</p>
+            <h3 style="font-size: 2.2rem; margin: 0;">Aisy & Fikri</h3>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        function openInvitation() {
+            document.getElementById('cover-screen').classList.add('opened');
+            document.getElementById('main-content').style.display = 'block';
+            
+            setTimeout(() => {
+                AOS.init({
+                    duration: 1000,
+                    once: false,
+                    mirror: true
+                });
+            }, 100);
+        }
+
+        const targetDate = new Date("November 1, 2026 08:00:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector(".countdown-container").innerHTML = "<p style='color:var(--gold); font-weight:bold;'>Acara Telah Dimulai/Selesai</p>";
+            }
+        }, 1000);
+
+        function submitWish(event) {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value;
+            const city = document.getElementById('guestCity').value;
+            const message = document.getElementById('guestMessage').value;
+            const container = document.getElementById('wishesDisplay');
+
+            const newWish = document.createElement('div');
+            newWish.className = 'wish-item';
+            newWish.innerHTML = `<strong>${name} (${city})</strong><p>${message}</p>`;
+
+            container.insertBefore(newWish, container.firstChild);
+            document.getElementById('wishForm').reset();
+        }
+    </script>
+</body>
+</html>

@@ -388,12 +388,17 @@
             <p data-aos="fade-up" style="font-size: 0.9rem; margin-bottom: 30px; color:#666;">Berikan doa restu dan ucapan selamat Anda kepada kedua mempelai</p>
             
             <div class="card" data-aos="fade-up">
-                <form id="wishForm" onsubmit="submitWish(event)">
-                    <input type="text" id="guestName" placeholder="Nama Anda" required>
-                    <input type="text" id="guestCity" placeholder="Asal Kota / Hubungan (Contoh: Teman Fikri)" required>
-                    <textarea id="guestMessage" rows="4" placeholder="Tulis ucapan dan doa restu Anda di sini..." required></textarea>
-                    <button type="submit" class="btn-gold" style="margin-top: 5px;">Kirim Ucapan</button>
-                </form>
+    <form action="https://api.web3forms.com/submit" method="POST" id="wishForm" onsubmit="submitWish(event)">
+        
+        <!-- Masukkan Access Key dari Web3Forms di sini -->
+        <input type="hidden" name="access_key" value="5eb8f52a-99d1-4840-8a50-3838e1fe7bab">
+
+        <input type="text" name="name" id="guestName" placeholder="Nama Anda" required>
+        <input type="text" name="city" id="guestCity" placeholder="Asal Kota / Hubungan (Contoh: Teman Fikri)" required>
+        <textarea name="message" id="guestMessage" rows="4" placeholder="Tulis ucapan dan doa restu Anda di sini..." required></textarea>
+        
+        <button type="submit" class="btn-gold" style="margin-top: 5px;">Kirim Ucapan</button>
+    </form>
 
                 <div class="wishes-display" id="wishesDisplay">
                     <div class="wish-item">

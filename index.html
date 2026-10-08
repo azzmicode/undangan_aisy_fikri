@@ -300,7 +300,7 @@
             
             <div class="card" data-aos="zoom-in">
                 <h2 style="font-size: 1.2rem; letter-spacing: 1px;">QS. Ar-Rum: 21</h2>
-                <p class="arabic">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا مِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ Bَيْن those كُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ</p>
+                <p class="arabic"> وَمِنۡ ءَایَـٰتِهِۦۤ أَنۡ خَلَقَ لَكُم مِّنۡ أَنفُسِكُمۡ أَزۡوَ ٰ⁠جࣰا لِّتَسۡكُنُوۤا۟ إِلَیۡهَا وَجَعَلَ بَیۡنَكُم مَّوَدَّةࣰ وَرَحۡمَةًۚ إِنَّ فِی ذَ ٰ⁠لِكَ لَـَٔایَـٰتࣲ لِّقَوۡمࣲ یَتَفَكَّرُونَ</p>
                 <p class="translation">
                     "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
                 </p>
@@ -388,22 +388,16 @@
             <p data-aos="fade-up" style="font-size: 0.9rem; margin-bottom: 30px; color:#666;">Berikan doa restu dan ucapan selamat Anda kepada kedua mempelai</p>
             
             <div class="card" data-aos="fade-up">
-    <form action="https://api.web3forms.com/submit" method="POST" id="wishForm">
-    
-    <!-- Access Key Web3Forms kamu -->
-    <input type="hidden" name="access_key" value="5eb8f52a-99d1-4840-8a50-3838c1fc7bab">
-
-    <!-- Input Nama -->
-    <input type="text" name="name" id="guestName" placeholder="Nama Anda" required>
-    
-    <!-- Input Kota / Hubungan -->
-    <input type="text" name="city" id="guestCity" placeholder="Asal Kota / Hubungan (Contoh: Teman Fikri)" required>
-    
-    <!-- Input Pesan -->
-    <textarea name="message" id="guestMessage" rows="4" placeholder="Tulis ucapan dan doa restu Anda di sini..." required></textarea>
-    
-    <button type="submit" class="btn-gold" style="margin-top: 5px;">Kirim Ucapan</button>
-</form>
+    <div class="card" data-aos="fade-up">
+    <!-- Ganti action dengan endpoint Formspree kamu -->
+    <form action="https://api.formspree.io/f/KODE_FORMSPREE_KAMU" method="POST" id="wishForm">
+        
+        <input type="text" name="name" id="guestName" placeholder="Nama Anda" required>
+        <input type="text" name="city" id="guestCity" placeholder="Asal Kota / Hubungan (Contoh: Teman Fikri)" required>
+        <textarea name="message" id="guestMessage" rows="4" placeholder="Tulis ucapan dan doa restu Anda di sini..." required></textarea>
+        
+        <button type="submit" class="btn-gold" style="margin-top: 5px;">Kirim Ucapan</button>
+    </form>
 
                 <div class="wishes-display" id="wishesDisplay">
                     <div class="wish-item">

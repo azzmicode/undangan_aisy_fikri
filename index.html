@@ -425,57 +425,82 @@
         </footer>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        function openInvitation() {
-            document.getElementById('cover-screen').classList.add('opened');
-            document.getElementById('main-content').style.display = 'block';
-            
-            setTimeout(() => {
-                AOS.init({
-                    duration: 1000,
-                    once: false,
-                    mirror: true
-                });
-            }, 100);
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. FUNGSI UNTUK MEMBUKA UNDANGAN & MEMUTAR MUSIK
+    function openInvitation() {
+        document.getElementById('cover-screen').classList.add('opened');
+        document.getElementById('main-content').style.display = 'block';
+        
+        // Putar musik saat tombol buka ditekan
+        const music = document.getElementById('bgMusic');
+        music.play().catch(error => {
+            console.log("Autoplay dicegah browser, perlu interaksi.");
+        });
+        
+        // Tampilkan tombol musik melayang di pojok
+        document.getElementById('musicToggleBtn').style.display = 'block';
+        
+        setTimeout(() => {
+            AOS.init({
+                duration: 1000,
+                once: false,
+                mirror: true
+            });
+        }, 100);
+    }
+
+    // 2. FUNGSI UNTUK PLAY / PAUSE MUSIK (Diletakkan di luar agar bisa diakses tombol)
+    let isPlaying = true;
+    function toggleMusic() {
+        const music = document.getElementById('bgMusic');
+        const icon = document.getElementById('musicIcon');
+
+        if (isPlaying) {
+            music.pause();
+            icon.classList.remove('fa-spin');
+            icon.className = "fa-solid fa-play"; // Ubah ikon jadi play
+        } else {
+            music.play();
+            icon.classList.add('fa-spin');
+            icon.className = "fa-solid fa-compact-disc fa-spin"; // Ubah ikon jadi piringan berputar
         }
+        isPlaying = !isPlaying;
+    }
 
-        const targetDate = new Date("November 1, 2026 08:00:00").getTime();
+    // 3. COUNTDOWN TIMER MENUJU HARI H
+    const targetDate = new Date("November 1, 2026 08:00:00").getTime();
 
-        const countdownInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+    const countdownInterval = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.querySelector(".countdown-container").innerHTML = "<p style='color:var(--gold); font-weight:bold;'>Acara Telah Dimulai/Selesai</p>";
-            }
-        }, 1000);
-
-        function submitWish(event) {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value;
-            const city = document.getElementById('guestCity').value;
-            const message = document.getElementById('guestMessage').value;
-            const container = document.getElementById('wishesDisplay');
-
-            const newWish = document.createElement('div');
-            newWish.className = 'wish-item';
-            newWish.innerHTML = `<strong>${name} (${city})</strong><p>${message}</p>`;
-
-            container.insertBefore(newWish, container.firstChild);
-            document.getElementById('wishForm').reset();
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.querySelector(".countdown-container").innerHTML = "<p style='color:var(--gold); font-weight:bold;'>Acara Telah Dimulai/Selesai</p>";
         }
-    </script>
+    }, 1000);
+</script>
+
+    <!-- Background Audio -->
+<audio id="bgMusic" loop>
+    <source src="audio/wedding.mpeg" type="audio/mp3">
+    Browser kamu tidak mendukung pemutar audio.
+</audio>
+
+<!-- Tombol Floating Musik (Play/Pause) di Pojok Layar -->
+<button id="musicToggleBtn" onclick="toggleMusic()" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: rgb(246, 255, 0); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1.1rem;">
+    <i class="fa-solid fa-compact-disc fa-spin" id="musicIcon"></i>
+</button>
 </body>
 </html>

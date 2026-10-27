@@ -3,7 +3,7 @@
 Website undangan pernikahan digital yang interaktif dan *mobile-friendly*, dirancang dengan elemen visual dinamis dan sistem manajemen tamu (RSVP) terintegrasi.
 
 ## 🔗 Live Demo
-[Lihat Web Undangan secara langsung](https://azzmicode.github.io/undangan_aisy_fikri/) *(Ubah link ini sesuai URL GitHub Pages lu)*
+[Lihat Web Undangan secara langsung](https://azzmicode.github.io/undangan_aisy_fikri/)
 
 ## ✨ Fitur Utama
 * **Desain Mobile-First:** Antarmuka yang dioptimalkan penuh untuk kenyamanan akses melalui *smartphone*.
